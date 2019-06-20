@@ -1,3 +1,5 @@
+Contents of 'wyp' don't matter masyado, the rendering sa app is handled inside 'src'.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
