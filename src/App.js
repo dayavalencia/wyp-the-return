@@ -15,6 +15,7 @@ class App extends React.Component {
 
   renderIdentifyDoggo () {
     this.setState({ page: 1 })
+    console.log(navigator.camera)
   }
 
   render () {
@@ -31,14 +32,28 @@ class App extends React.Component {
               </header>
             </div>
           );
-      } else {
-        return (
-          <div className="App">
-            teehee
-          </div>
-        )
+      } else if (this.state.page === 1) {
+        // checks lang for navigator.camera (which is available only on mobile!)
+        if (navigator.camera) {
+          return (
+            <div className="App">
+              CAMERA PLUGIN LOADED
+            </div>
+          )
+        } else {
+            return (
+              <div className="App">
+                CAMERA PLUGIN NOT AVAILABLE
+              </div>
+            )
+        }
       }
   }
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.camera);
 }
 
 export default App;
