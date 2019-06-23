@@ -9,13 +9,26 @@ class App extends React.Component {
     super()
 
     this.state = {
-      page: 0
+      page: 0,
+      dogRankings: []
     }
   }
 
   renderIdentifyDoggo () {
     this.setState({ page: 1 })
     console.log(navigator.camera)
+  }
+
+  renderQuiz () {
+    this.setState({ page: 2 })
+  }
+
+  renderResults () {
+    this.setState({ page: 3 })
+  }
+
+  renderMenu() {
+    this.setState({ page: 0 })
   }
 
   render () {
@@ -27,8 +40,8 @@ class App extends React.Component {
                 <img src={dog} style={{ marginBottom: '10px'}} className="App-logo" alt="logo" />
                 <h1 style={{color: '#fff'}}>Who's Your Pupper?</h1>
                 <Button type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderIdentifyDoggo(e)}>IDENTIFY DOGGO</Button>
-                <Button style={{ marginBottom: '15px'}} shape='round' size='large'> TAKE QUIZ</Button>
-                <Button shape='round' size='large'>MY RESULTS</Button>
+                <Button style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderQuiz(e)}>TAKE QUIZ</Button>
+                <Button shape='round' size='large' onClick={e => this.renderResults(e)}>MY RESULTS</Button>
               </header>
             </div>
           );
@@ -47,13 +60,32 @@ class App extends React.Component {
               </div>
             )
         }
-      }
-  }
-}
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    console.log(navigator.camera);
+      } else if  (this.state.page === 2) {
+        return (
+          <div className="App">
+              <header className="App-header">
+                <h1 style={{color: '#fff'}}>Pupper Matching Quiz</h1>
+                {/*insert separate component lol*/}
+                <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+              </header>
+          </div>
+        )
+        
+      } else if  (this.state.page === 3) {
+        return (
+          <div className="App">
+              <header className="App-header">
+                <h1 style={{color: '#fff'}}>Pupper Matching Results</h1>
+                {/*insert separate component lol*/}
+                <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+              </header>
+          </div>
+        )
+        
+      }
+
+  }
 }
 
 export default App;
