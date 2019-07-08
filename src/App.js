@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import dog from './dog.png';
 import PrivacyPolicy from './PrivacyPolicy.js';
+import QuizItem from './QuizItem.js';
 import './App.css';
 import 'antd/dist/antd.css';
 
@@ -73,7 +74,7 @@ class App extends React.Component {
           <div className="App">
               <header className="App-header">
                 <h1 style={{color: '#fff'}}>Pupper Matching Quiz</h1>
-                {/*insert separate component lol*/}
+                <QuizItem />
                 <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
               </header>
           </div>
