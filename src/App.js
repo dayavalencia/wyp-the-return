@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import dog from './dog.png';
+import PrivacyPolicy from './PrivacyPolicy.js';
 import './App.css';
 import 'antd/dist/antd.css';
 
@@ -27,6 +28,10 @@ class App extends React.Component {
     this.setState({ page: 3 })
   }
 
+  renderPrivacyPolicy () {
+    this.setState({ page: 4 })
+  }
+
   renderMenu() {
     this.setState({ page: 0 })
   }
@@ -42,6 +47,8 @@ class App extends React.Component {
                 <Button type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderIdentifyDoggo(e)}>IDENTIFY DOGGO</Button>
                 <Button style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderQuiz(e)}>TAKE QUIZ</Button>
                 <Button shape='round' size='large' onClick={e => this.renderResults(e)}>MY RESULTS</Button>
+                <br />
+                <a href='#' style={{ fontSize: '3vh' }} onClick={e => this.renderPrivacyPolicy(e)}>Privacy Policy</a>
               </header>
             </div>
           );
@@ -83,6 +90,16 @@ class App extends React.Component {
           </div>
         )
         
+      } else if (this.state.page === 4) {
+        return (
+          <div className="App">
+              <header className="App-header">
+                <h1 style={{color: '#fff'}}>Privacy Policy</h1>
+                <PrivacyPolicy />
+                <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+              </header>
+          </div>
+        )
       }
 
   }
