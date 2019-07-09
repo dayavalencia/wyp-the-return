@@ -60,7 +60,7 @@ const items = [
           points: 1234
       },
       { 
-          label: 'Read a good book with your dog beside you.',
+          label: 'Read a good book \n with your dog beside you.',
           points: 1234
       },
       { 
@@ -168,7 +168,7 @@ const items = [
           points: 1234
       },
       { 
-          label: 'Full groom and buy him/her dog clothes',
+          label: 'Full groom and buy \n him/her dog clothes',
           points: 1234
       }          
     ]
@@ -197,11 +197,19 @@ const items = [
 function QuizItem (props) {
   return (
     <Fragment>
-      <h2 style={{ color: '#fff' }}>Q{items[0].key + 1}. {items[0].question}</h2>
+      <h2 style={{ color: '#fff' }}>Q{items[props.currentQuestion].key + 1}. {items[props.currentQuestion].question}</h2>
       {
-        items[0].answers.map((item,i) => (
+        items[props.currentQuestion].answers.map((item,i) => (
           <Fragment>
-            <Button key={i} type='primary' shape='round' size='large'>{item.label}</Button>
+            <Button key={i} 
+                    type='primary' 
+                    shape='round' 
+                    size='large'
+                    onClick={props.nextQuestion}
+                    style={{ whiteSpace: 'normal' }}
+            >
+              {item.label}
+            </Button>
             <br/>
           </Fragment>
         ))

@@ -12,28 +12,35 @@ class App extends React.Component {
 
     this.state = {
       page: 0,
-      dogRankings: []
+      dogRankings: [],
+      currentQuestion: 0
     }
   }
 
-  renderIdentifyDoggo () {
+  nextQuestion = () => {
+    if (this.state.currentQuestion < 9) {
+      this.setState({ currentQuestion: this.state.currentQuestion + 1 })
+    }
+  }
+
+  renderIdentifyDoggo = () => {
     this.setState({ page: 1 })
     console.log(navigator.camera)
   }
 
-  renderQuiz () {
+  renderQuiz = () => {
     this.setState({ page: 2 })
   }
 
-  renderResults () {
+  renderResults = () => {
     this.setState({ page: 3 })
   }
 
-  renderPrivacyPolicy () {
+  renderPrivacyPolicy = () => {
     this.setState({ page: 4 })
   }
 
-  renderMenu() {
+  renderMenu = () => {
     this.setState({ page: 0 })
   }
 
@@ -74,7 +81,7 @@ class App extends React.Component {
           <div className="App">
               <header className="App-header">
                 <h1 style={{color: '#fff'}}>Pupper Matching Quiz</h1>
-                <QuizItem />
+                <QuizItem currentQuestion={this.state.currentQuestion} nextQuestion={this.nextQuestion}/>
                 <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
               </header>
           </div>
