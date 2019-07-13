@@ -194,6 +194,16 @@ const items = [
 ]
 
 class QuizItem extends React.Component {
+    addPoints = (item, dogRankings) => {
+        let i
+        for (i = 0; i < item.points.length; i++) {
+            dogRankings[ item.points[i] ]++
+        }
+
+        console.log(dogRankings)
+        this.props.nextQuestion()
+    }
+
     render () {
         return (
             <Fragment>
@@ -205,7 +215,7 @@ class QuizItem extends React.Component {
                             type='primary'
                             shape='round'
                             size='large'
-                            onClick={this.props.nextQuestion}
+                            onClick={() => this.addPoints(item, this.props.dogRankings)}
                             style={{ whiteSpace: 'normal' }}
                     >
                     {item.label}

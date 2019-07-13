@@ -12,8 +12,14 @@ class App extends React.Component {
 
     this.state = {
       page: 0,
-      dogRankings: [],
-      currentQuestion: 0
+      currentQuestion: 0,
+      dogRankings: {
+          'pug': 0,
+          'corgi': 0,
+          'chihuahua': 0,
+          'shepherd': 0,
+          'husky': 0
+      }
     }
   }
 
@@ -45,7 +51,6 @@ class App extends React.Component {
   }
 
   render () {
-
       if (this.state.page === 0) {
           return (
             <div className="App">
@@ -81,12 +86,16 @@ class App extends React.Component {
           <div className="App">
               <header className="App-header">
                 <h1 style={{color: '#fff'}}>Pupper Matching Quiz</h1>
-                <QuizItem currentQuestion={this.state.currentQuestion} nextQuestion={this.nextQuestion}/>
+                <QuizItem
+                    currentQuestion={this.state.currentQuestion}
+                    nextQuestion={this.nextQuestion}
+                    dogRankings={this.state.dogRankings}
+                />
                 <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
               </header>
           </div>
         )
-        
+
       } else if  (this.state.page === 3) {
         return (
           <div className="App">
@@ -97,7 +106,7 @@ class App extends React.Component {
               </header>
           </div>
         )
-        
+
       } else if (this.state.page === 4) {
         return (
           <div className="App">
