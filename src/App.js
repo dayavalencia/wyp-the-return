@@ -50,6 +50,23 @@ class App extends React.Component {
     this.setState({ page: 0 })
   }
 
+  resetQuiz = () => {
+    this.setState(
+      {
+        dogRankings: {
+          'pug': 0,
+          'corgi': 0,
+          'chihuahua': 0,
+          'shepherd': 0,
+          'husky': 0
+        },
+        currentQuestion: 0
+      }
+    )
+
+    this.renderMenu()
+  }
+
   render () {
       if (this.state.page === 0) {
           return (
@@ -91,7 +108,7 @@ class App extends React.Component {
                     nextQuestion={this.nextQuestion}
                     dogRankings={this.state.dogRankings}
                 />
-                <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+                <Button shape='round' size='large' onClick={e => this.resetQuiz(e)}>BACK TO MENU</Button>
               </header>
           </div>
         )
