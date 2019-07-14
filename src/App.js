@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   renderMenu = () => {
-    this.setState({ page: 0 })
+    this.setState({ page: 0, currentQuestion: 0})
   }
 
   resetQuiz = () => {
