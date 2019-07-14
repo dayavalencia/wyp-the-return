@@ -1,5 +1,9 @@
 Contents of 'wyp' don't matter masyado, the rendering sa app is handled inside 'src'.
 
+## How to run app on phone or emulator
+  npm run build
+  cordova run android OR cordova emulate android
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
