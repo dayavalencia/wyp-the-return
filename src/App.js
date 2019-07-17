@@ -19,7 +19,8 @@ class App extends React.Component {
           'chihuahua': 0,
           'shepherd': 0,
           'husky': 0
-      }
+      },
+      hasRanking: false
     }
   }
 
@@ -27,7 +28,7 @@ class App extends React.Component {
     if (this.state.currentQuestion < 9) {
       this.setState({ currentQuestion: this.state.currentQuestion + 1 })
     } else {
-      this.setState({ page: 3 })
+      this.setState({ page: 3, hasRanking: true })
     }
   }
 
@@ -112,7 +113,8 @@ class App extends React.Component {
                 <h1 style={{color: '#fff'}}>Who's Your Pupper?</h1>
                 <Button type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderIdentifyDoggo(e)}>IDENTIFY DOGGO</Button>
                 <Button style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderQuiz(e)}>TAKE QUIZ</Button>
-                <Button shape='round' size='large' onClick={e => this.renderResults(e)}>MY RESULTS</Button>
+                <Button shape='round' size='large' onClick={e => this.renderResults(e)} disabled={!(this.state.hasRanking)}>MY RESULTS</Button>
+                
                 <br />
                 <a href='#' style={{ fontSize: '3vh' }} onClick={e => this.renderPrivacyPolicy(e)}>Privacy Policy</a>
               </header>
