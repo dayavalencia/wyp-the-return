@@ -25,19 +25,19 @@ class App extends React.Component {
     
     let cam = {
       init:function () {
-        document.getElementById('cambtn').addEventListener('click', cam.takePhoto;
+        document.getElementById('cambtn').addEventListener('click', cam.takePhoto);
       },
       takePhoto:function() {
         let opts={
             quality: 80,
             allowEdit: false,
-            destinationType:Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.CAMERA,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.CAMERA,
             // targetWidth - baka need baguhin depende sa size ng trained
             // targetHeight
-            mediaType: Camera.MediaType.PICTURE,
-            encodingType: Camera.EncodingType.JPEG,
-            cameraDirection:Camera.Direction.BACK
+            mediaType: navigator.camera.MediaType.PICTURE,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            cameraDirection: navigator.camera.Direction.BACK
         };
         navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
         
@@ -52,7 +52,7 @@ class App extends React.Component {
       }
     };
 
-    document.addEventListener('deviceready', cam.init);cd .
+    document.addEventListener('deviceready', cam.init);
 
   }
 
@@ -67,13 +67,13 @@ class App extends React.Component {
         let opts={
             quality: 80,
             allowEdit: false,
-            destinationType:Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            destinationType:navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
             // targetWidth - baka need baguhin depende sa size ng trained
             // targetHeight
-            mediaType: Camera.MediaType.PICTURE,
-            encodingType: Camera.EncodingType.JPEG,
-            cameraDirection:Camera.Direction.BACK
+            mediaType: navigator.camera.MediaType.PICTURE,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            cameraDirection:navigator.camera.Direction.BACK
         };
         navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
         
