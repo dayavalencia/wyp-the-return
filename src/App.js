@@ -23,9 +23,9 @@ class App extends React.Component {
   takeDoggoPhotoFromCam() {
     this.setState({ page:2 })
     if (window.cordova) {
-      document.addEventListener('deviceready',startApp,false)
+      document.addEventListener('deviceready',cam.init(),false)
     } else {
-      startApp()
+      cam.init()
     }
     let cam = {
       init:function () {
@@ -61,9 +61,9 @@ class App extends React.Component {
   takeDoggoPhotoFromAlbum() {
     this.setState({ page: 3 })
     if (window.cordova) {
-      document.addEventListener('deviceready',startApp,false)
+      document.addEventListener('deviceready',cam.init(),false)
     } else {
-      startApp()
+      cam.init()
     }
     let cam = {
       init:function () {
