@@ -22,60 +22,76 @@ class App extends React.Component {
 
   takeDoggoPhotoFromCam() {
     this.setState({ page:2 })
-
-    function init () {
-      document.getElementById('cambtn').addEventListener('click', takePhoto());
+    if (window.cordova) {
+      document.addEventListener('deviceready',startApp,false)
+    } else {
+      startApp()
     }
-    function takePhoto() {
-      let opts={
-          quality:80,
-          allowEdit: false,
-          destinationType:Camera.DestinationType.FILE_URI,
-          sourceType: Camera.PictureSourceType.CAMERA,//or SAVEDPHOTOALBUM
-          // targetWidth - baka need baguhin depende sa size ng trained
-          // targetHeight
-          mediaType: Camera.MediaType.PICTURE,
-          encodingType: Camera.EncodingType.JPEG,
-          cameraDirection:Camera.Direction.BACK
-      };
-      navigator.camera.getPicture(works(),doesNotWork(),opts);
-    }
-    function works(imgURI){
-      document.getElementById('msg').textContent = imgURI;
-      document.getElementById('photo').src = imgURI;
-    }
-    function doesNotWork(msg) {
-      document.getElementById('msg').textContent = msg; 
+    let cam = {
+      init:function () {
+        document.getElementById('cambtn').addEventListener('click', cam.takePhoto());
+      },
+      takePhoto:function() {
+        let opts={
+            quality: 80,
+            allowEdit: false,
+            destinationType:Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            // targetWidth - baka need baguhin depende sa size ng trained
+            // targetHeight
+            mediaType: Camera.MediaType.PICTURE,
+            encodingType: Camera.EncodingType.JPEG,
+            cameraDirection:Camera.Direction.BACK
+        };
+        navigator.camera.getPicture(cam.works(),cam.doesNotWork(),opts);
+        
+      },
+      works:function(imgURI){
+        document.getElementById('msg').textContent = imgURI;
+        document.getElementById('photo').src = imgURI;
+        //maybe insert the classifier here. take the imgURI as input?
+      },
+      doesNotWork:function(msg) {
+        document.getElementById('msg').textContent = msg; 
+      }
     }
 
   }
 
   takeDoggoPhotoFromAlbum() {
     this.setState({ page: 3 })
-    function init () {
-      document.getElementById('cambtn').addEventListener('click', getPhoto());
+    if (window.cordova) {
+      document.addEventListener('deviceready',startApp,false)
+    } else {
+      startApp()
     }
-    function getPhoto() {
-      let opts={
-          quality:80,
-          allowEdit: false,
-          destinationType:Camera.DestinationType.FILE_URI,
-          sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-          // targetWidth - baka need baguhin depende sa size ng trained
-          // targetHeight
-          mediaType: Camera.MediaType.PICTURE,
-          encodingType: Camera.EncodingType.JPEG,
-          cameraDirection:Camera.Direction.BACK
-      };
-      navigator.camera.getPicture(works(),doesNotWork(),opts);
-    }
-    function works(imgURI){
-      document.getElementById('msg').textContent = imgURI;
-      document.getElementById('photo').src = imgURI;
-      //maybe insert the classifier here. take the imgURI as input?
-    }
-    function doesNotWork(msg) {
-      document.getElementById('msg').textContent = msg; 
+    let cam = {
+      init:function () {
+        document.getElementById('cambtn').addEventListener('click', cam.getPhoto());
+      },
+      getPhoto:function() {
+        let opts={
+            quality: 80,
+            allowEdit: false,
+            destinationType:Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            // targetWidth - baka need baguhin depende sa size ng trained
+            // targetHeight
+            mediaType: Camera.MediaType.PICTURE,
+            encodingType: Camera.EncodingType.JPEG,
+            cameraDirection:Camera.Direction.BACK
+        };
+        navigator.camera.getPicture(cam.works(),cam.doesNotWork(),opts);
+        
+      },
+      works:function(imgURI){
+        document.getElementById('msg').textContent = imgURI;
+        document.getElementById('photo').src = imgURI;
+        //maybe insert the classifier here. take the imgURI as input?
+      },
+      doesNotWork:function(msg) {
+        document.getElementById('msg').textContent = msg; 
+      }
     }
   }
 
@@ -129,16 +145,12 @@ class App extends React.Component {
            </div>) 
       } else if(this.state.page===2) {
         //from cam
-        <div className ="App">
-          
-        </div>
+       
       } else if(this.state.page===3) {
         //from photo album
-        <div className ="App">
-        </div>
+      
       } else if (this.state.page===4) {
-        <div className ="App">
-        </div>
+
       } else if  (this.state.page === 5) {
         return (
           <div className="App">
