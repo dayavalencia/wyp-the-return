@@ -22,14 +22,10 @@ class App extends React.Component {
 
   takeDoggoPhotoFromCam() {
     this.setState({ page:2 })
-    if (window.cordova) {
-      document.addEventListener('deviceready',cam.init(),false)
-    } else {
-      cam.init()
-    }
+    
     let cam = {
       init:function () {
-        document.getElementById('cambtn').addEventListener('click', cam.takePhoto());
+        document.getElementById('cambtn').addEventListener('click', cam.takePhoto;
       },
       takePhoto:function() {
         let opts={
@@ -43,7 +39,7 @@ class App extends React.Component {
             encodingType: Camera.EncodingType.JPEG,
             cameraDirection:Camera.Direction.BACK
         };
-        navigator.camera.getPicture(cam.works(),cam.doesNotWork(),opts);
+        navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
         
       },
       works:function(imgURI){
@@ -54,20 +50,18 @@ class App extends React.Component {
       doesNotWork:function(msg) {
         document.getElementById('msg').textContent = msg; 
       }
-    }
+    };
+
+    document.addEventListener('deviceready', cam.init);cd .
 
   }
 
   takeDoggoPhotoFromAlbum() {
     this.setState({ page: 3 })
-    if (window.cordova) {
-      document.addEventListener('deviceready',cam.init(),false)
-    } else {
-      cam.init()
-    }
+
     let cam = {
       init:function () {
-        document.getElementById('cambtn').addEventListener('click', cam.getPhoto());
+        document.getElementById('cambtn').addEventListener('click', cam.getPhoto);
       },
       getPhoto:function() {
         let opts={
@@ -81,7 +75,7 @@ class App extends React.Component {
             encodingType: Camera.EncodingType.JPEG,
             cameraDirection:Camera.Direction.BACK
         };
-        navigator.camera.getPicture(cam.works(),cam.doesNotWork(),opts);
+        navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
         
       },
       works:function(imgURI){
@@ -92,7 +86,9 @@ class App extends React.Component {
       doesNotWork:function(msg) {
         document.getElementById('msg').textContent = msg; 
       }
-    }
+    };
+
+    document.addEventListener('deviceready', cam.init);
   }
 
   renderIdentifyDoggo () {
