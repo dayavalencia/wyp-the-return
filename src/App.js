@@ -16,21 +16,86 @@ class App extends React.Component {
     }
   }
 
+  choosePhotoSource() {
+    this.setState({ page:1 })
+  }
+
+  takeDoggoPhotoFromCam() {
+    this.setState({ page:2 })
+
+    function init () {
+      document.getElementById('cambtn').addEventListener('click', takePhoto());
+    }
+    function takePhoto() {
+      let opts={
+          quality:80,
+          allowEdit: false,
+          destinationType:Camera.DestinationType.FILE_URI,
+          sourceType: Camera.PictureSourceType.CAMERA,//or SAVEDPHOTOALBUM
+          // targetWidth - baka need baguhin depende sa size ng trained
+          // targetHeight
+          mediaType: Camera.MediaType.PICTURE,
+          encodingType: Camera.EncodingType.JPEG,
+          cameraDirection:Camera.Direction.BACK
+      };
+      navigator.camera.getPicture(works(),doesNotWork(),opts);
+    }
+    function works(imgURI){
+      document.getElementById('msg').textContent = imgURI;
+      document.getElementById('photo').src = imgURI;
+    }
+    function doesNotWork(msg) {
+      document.getElementById('msg').textContent = msg; 
+    }
+
+  }
+
+  takeDoggoPhotoFromAlbum() {
+    this.setState({ page: 3 })
+    function init () {
+      document.getElementById('cambtn').addEventListener('click', getPhoto());
+    }
+    function getPhoto() {
+      let opts={
+          quality:80,
+          allowEdit: false,
+          destinationType:Camera.DestinationType.FILE_URI,
+          sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+          // targetWidth - baka need baguhin depende sa size ng trained
+          // targetHeight
+          mediaType: Camera.MediaType.PICTURE,
+          encodingType: Camera.EncodingType.JPEG,
+          cameraDirection:Camera.Direction.BACK
+      };
+      navigator.camera.getPicture(works(),doesNotWork(),opts);
+    }
+    function works(imgURI){
+      document.getElementById('msg').textContent = imgURI;
+      document.getElementById('photo').src = imgURI;
+      //maybe insert the classifier here. take the imgURI as input?
+    }
+    function doesNotWork(msg) {
+      document.getElementById('msg').textContent = msg; 
+    }
+  }
+
   renderIdentifyDoggo () {
-    this.setState({ page: 1 })
-    console.log(navigator.camera)
+    this.setState({ page: 4 })
+    //console.log(navigator.camera);
+  
+   
   }
 
   renderQuiz () {
-    this.setState({ page: 2 })
+    this.setState({ page: 5 })
   }
 
   renderResults () {
-    this.setState({ page: 3 })
+    this.setState({ page: 6 })
   }
 
   renderPrivacyPolicy () {
-    this.setState({ page: 4 })
+    this.setState({ page: 7 })
   }
 
   renderMenu() {
@@ -45,7 +110,7 @@ class App extends React.Component {
               <header className="App-header">
                 <img src={dog} style={{ marginBottom: '10px'}} className="App-logo" alt="logo" />
                 <h1 style={{color: '#fff'}}>Who's Your Pupper?</h1>
-                <Button type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderIdentifyDoggo(e)}>IDENTIFY DOGGO</Button>
+                <Button id='cambtn' type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.choosePhotoSource(e)}>IDENTIFY DOGGO</Button>
                 <Button style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderQuiz(e)}>TAKE QUIZ</Button>
                 <Button shape='round' size='large' onClick={e => this.renderResults(e)}>MY RESULTS</Button>
                 <br />
@@ -53,23 +118,28 @@ class App extends React.Component {
               </header>
             </div>
           );
-      } else if (this.state.page === 1) {
-        // checks lang for navigator.camera (which is available only on mobile!)
-        if (navigator.camera) {
-          return (
-            <div className="App">
-              CAMERA PLUGIN LOADED
-            </div>
-          )
-        } else {
-            return (
-              <div className="App">
-                CAMERA PLUGIN NOT AVAILABLE
-              </div>
-            )
-        }
-
-      } else if  (this.state.page === 2) {
+      } else if (this.state.page === 1) { //Choose from taking a photo from cam of album
+        return (         
+          <div className="App">
+            <header className="App-header">
+              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromCam(e)}>TAKE A PICTURE</Button>
+              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromAlbum(e)}>CHOOSE FROM ALBUM</Button>
+              <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+            </header>
+           </div>) 
+      } else if(this.state.page===2) {
+        //from cam
+        <div className ="App">
+          
+        </div>
+      } else if(this.state.page===3) {
+        //from photo album
+        <div className ="App">
+        </div>
+      } else if (this.state.page===4) {
+        <div className ="App">
+        </div>
+      } else if  (this.state.page === 5) {
         return (
           <div className="App">
               <header className="App-header">
@@ -80,7 +150,7 @@ class App extends React.Component {
           </div>
         )
         
-      } else if  (this.state.page === 3) {
+      } else if  (this.state.page === 6) {
         return (
           <div className="App">
               <header className="App-header">
@@ -91,7 +161,7 @@ class App extends React.Component {
           </div>
         )
         
-      } else if (this.state.page === 4) {
+      } else if (this.state.page === 7) {
         return (
           <div className="App">
               <header className="App-header">
