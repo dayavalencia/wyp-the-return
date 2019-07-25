@@ -2,213 +2,232 @@ import React, { Fragment } from 'react';
 import { Button } from 'antd';
 
 const items = [
-
   {
     key: 0,
     question: 'Which of these describe you best? ',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Comical',
-          points: 1234
+          points: ['pug']
       },
-      { 
+      {
           label: 'Fitness Junkie',
-          points: 1234
+          points: ['husky', 'shepherd']
       },
-      { 
+      {
           label: 'Social butterfly',
-          points: 1234
+          points: ['corgi']
       },
-      { 
+      {
           label: 'Reserved but loyal',
-          points: 1234
-      }        
+          points: ['chihuahua']
+      }
     ]
   },
   {
     key: 1,
     question: 'What traits would you like your dog to have?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Super friendly and follows you around wherever you go',
-          points: 1234
+          points: ['corgi']
       },
-      { 
+      {
           label: 'Alert and protective',
-          points: 1234
+          points: ['shepherd']
       },
-      { 
+      {
           label: 'Lap dog',
-          points: 1234
+          points: ['pug', 'chihuahua']
       },
-      { 
+      {
           label: 'Active',
-          points: 1234
-      }        
+          points: ['husky']
+      }
     ]
   },
   {
     key: 2,
     question: 'You have some spare time, what do you want to do with your dog?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Cuddle!',
-          points: 1234
+          points: ['pug', 'chihuahua']
       },
-      { 
+      {
           label: 'Go to the park and play fetch!',
-          points: 1234
+          points: ['husky', 'corgi', 'shepherd']
       },
-      { 
-          label: 'Read a good book with your dog beside you.',
-          points: 1234
+      {
+          label: 'Read a good book \n with your dog beside you.',
+          points: ['pug', 'chihuahua']
       },
-      { 
+      {
           label: 'Go jogging with your dog',
-          points: 1234
-      }        
+          points: ['husky', 'shepherd']
+      }
     ]
   },
   {
     key: 3,
     question: 'What size of dog do you prefer?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Small',
-          points: 1234
+          points: ['chihuahua']
       },
-      { 
+      {
           label: 'Medium',
-          points: 1234
+          points: ['corgi', 'pug']
       },
-      { 
+      {
           label: 'Large',
-          points: 1234
-      }       
+          points: ['husky', 'shepherd']
+      }
     ]
   },
   {
     key: 4,
     question: 'What kind of home do you have? ',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Apartment',
-          points: 1234
+          points: ['corgi', 'chihuahua', 'pug']
       },
-      { 
+      {
           label: 'House',
-          points: 1234
+          points: ['corgi', 'chihuahua', 'pug']
       },
-      { 
+      {
           label: 'House with a yard',
-          points: 1234
-      }       
+          points: ['corgi', 'chihuahua', 'pug', 'shepherd', 'husky']
+      }
     ]
   },
   {
     key: 5,
     question: 'If you have kids at home, how old are they?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Less than a year old',
-          points: 1234
+          points: []
       },
-      { 
+      {
           label: '1-8 years old',
-          points: 1234
+          points: ['husky']
       },
-      { 
+      {
           label: '8-12 years old',
-          points: 1234
+          points: ['corgi','pug']
       },
-      { 
+      {
         label: 'I have no kids',
-        points: 1234
-      }        
+        points: ['corgi', 'chihuahua', 'pug', 'shepherd', 'husky']
+      }
     ]
   },
   {
     key: 6,
     question: 'Will you be able to walk/exercise your dog everyday? If not, can somebody else do it for you?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Yes',
-          points: 1234
+          points: ['corgi', 'husky', 'shepherd', 'chihuahua']
       },
-      { 
+      {
           label: 'No',
-          points: 1234
-      }     
+          points: ['pug']
+      }
     ]
   },
   {
     key: 7,
     question: 'Will you be able to get your dog regular check up?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Yes',
-          points: 1234
+          points: ['husky', 'chihuahua', 'pug']
       },
-      { 
+      {
           label: 'No',
-          points: 1234
-      }     
+          points: ['shepherd', 'corgi']
+      }
     ]
   },
   {
     key: 8,
     question: 'When it comes to making your dog look good will you:',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'Give him a bath',
-          points: 1234
+          points: ['corgi', 'shepherd', 'husky', 'pug', 'chihuahua']
       },
-      { 
+      {
           label: 'Full groom at the groomers',
-          points: 1234
+          points: []
       },
-      { 
-          label: 'Full groom and buy him/her dog clothes',
-          points: 1234
-      }          
+      {
+          label: 'Full groom and buy \n him/her dog clothes',
+          points: []
+      }
     ]
   },
   {
     key: 9,
     question: 'What kind of fur parent will you be?',
-    answers: [ 
-      { 
+    answers: [
+      {
           label: 'The cuddler',
-          points: 1234
+          points: ['corgi']
       },
-      { 
+      {
           label: 'Strict and consistent',
-          points: 1234
+          points: ['chihuahua', 'pug']
       },
-      { 
+      {
           label: 'The pack leader',
-          points: 1234
-      }          
+          points: ['shepherd', 'husky']
+      }
     ]
   }
 
 ]
 
-function QuizItem (props) {
-  return (
-    <Fragment>
-      <h2 style={{ color: '#fff' }}>Q{items[0].key + 1}. {items[0].question}</h2>
-      {
-        items[0].answers.map((item,i) => (
-          <Fragment>
-            <Button key={i} type='primary' shape='round' size='large'>{item.label}</Button>
-            <br/>
-          </Fragment>
-        ))
-      }
-      <br />
-    </Fragment>
-  )
+class QuizItem extends React.Component {
+    addPoints = (item, dogRankings) => {
+        let i
+        for (i = 0; i < item.points.length; i++) {
+            dogRankings[ item.points[i] ]++
+        }
+
+        console.log(dogRankings)
+        this.props.nextQuestion()
+    }
+
+    render () {
+        return (
+            <Fragment>
+            <h2 style={{ color: '#fff' }}>Q{items[this.props.currentQuestion].key + 1}. {items[this.props.currentQuestion].question}</h2>
+            {
+                items[this.props.currentQuestion].answers.map((item,i) => (
+                <Fragment>
+                    <Button key={i}
+                            type='primary'
+                            shape='round'
+                            size='large'
+                            onClick={() => this.addPoints(item, this.props.dogRankings)}
+                            style={{ whiteSpace: 'normal', paddingBottom: '20px'}}
+                    >
+                    {item.label}
+                    </Button>
+                    <br/>
+                </Fragment>
+                ))
+            }
+            <br />
+            </Fragment>
+        )
+    }
 }
 
 export default QuizItem;
