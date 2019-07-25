@@ -28,7 +28,7 @@ class App extends React.Component {
     if (this.state.currentQuestion < 9) {
       this.setState({ currentQuestion: this.state.currentQuestion + 1 })
     } else {
-      this.setState({ page: 3, hasRanking: true })
+      this.setState({ page: 6, hasRanking: true })
     }
   }
 
@@ -38,15 +38,90 @@ class App extends React.Component {
   }
 
   renderQuiz = () => {
-    this.setState({ page: 2 })
+    this.setState({ page: 5 })
   }
 
   renderResults = () => {
-    this.setState({ page: 3 })
+    this.setState({ page: 6 })
   }
 
   renderPrivacyPolicy = () => {
-    this.setState({ page: 4 })
+    this.setState({ page: 7 })
+  }
+
+  choosePhotoSource() {
+    this.setState({ page:1 })
+  }
+
+  takeDoggoPhotoFromCam() {
+    this.setState({ page:2 })
+    
+    let cam = {
+      init:function () {
+        document.getElementById('cambtn').addEventListener('click', cam.takePhoto);
+      },
+      takePhoto:function() {
+        let opts={
+            quality: 80,
+            allowEdit: false,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.CAMERA,
+            // targetWidth - baka need baguhin depende sa size ng trained
+            // targetHeight
+            mediaType: navigator.camera.MediaType.PICTURE,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            cameraDirection: navigator.camera.Direction.BACK
+        };
+        navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
+        
+      },
+      works:function(imgURI){
+        document.getElementById('msg').textContent = imgURI;
+        document.getElementById('photo').src = imgURI;
+        //maybe insert the classifier here. take the imgURI as input?
+      },
+      doesNotWork:function(msg) {
+        document.getElementById('msg').textContent = msg; 
+      }
+    };
+
+    document.addEventListener('deviceready', cam.init);
+
+  }
+
+  takeDoggoPhotoFromAlbum() {
+    this.setState({ page: 3 })
+
+    let cam = {
+      init:function () {
+        document.getElementById('cambtn').addEventListener('click', cam.getPhoto);
+      },
+      getPhoto:function() {
+        let opts={
+            quality: 80,
+            allowEdit: false,
+            destinationType:navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            // targetWidth - baka need baguhin depende sa size ng trained
+            // targetHeight
+            mediaType: navigator.camera.MediaType.PICTURE,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            cameraDirection:navigator.camera.Direction.BACK
+        };
+        navigator.camera.getPicture(cam.works,cam.doesNotWork,opts);
+        
+      },
+      works:function(imgURI){
+        document.getElementById('msg').textContent = imgURI;
+        document.getElementById('photo').src = imgURI;
+        //maybe insert the classifier here. take the imgURI as input?
+      },
+      doesNotWork:function(msg) {
+        document.getElementById('msg').textContent = msg; 
+      }
+    };
+
+    document.addEventListener('deviceready', cam.init);
   }
 
   renderMenu = () => {
@@ -111,7 +186,7 @@ class App extends React.Component {
               <header className="App-header">
                 <img src={dog} style={{ marginBottom: '10px'}} className="App-logo" alt="logo" />
                 <h1 style={{color: '#fff'}}>Who's Your Pupper?</h1>
-                <Button type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderIdentifyDoggo(e)}>IDENTIFY DOGGO</Button>
+                <Button id='cambtn' type='primary' style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.choosePhotoSource(e)}>IDENTIFY DOGGO</Button>
                 <Button style={{ marginBottom: '15px'}} shape='round' size='large' onClick={e => this.renderQuiz(e)}>TAKE QUIZ</Button>
                 <Button shape='round' size='large' onClick={e => this.renderResults(e)} disabled={!(this.state.hasRanking)}>MY RESULTS</Button>
                 
@@ -120,23 +195,24 @@ class App extends React.Component {
               </header>
             </div>
           );
-      } else if (this.state.page === 1) {
-        // checks lang for navigator.camera (which is available only on mobile!)
-        if (navigator.camera) {
-          return (
-            <div className="App">
-              CAMERA PLUGIN LOADED
-            </div>
-          )
-        } else {
-            return (
-              <div className="App">
-                CAMERA PLUGIN NOT AVAILABLE
-              </div>
-            )
-        }
+      } else if (this.state.page === 1) { //Choose from taking a photo from cam of album
+        return (         
+          <div className="App">
+            <header className="App-header">
+              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromCam(e)}>TAKE A PICTURE</Button>
+              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromAlbum(e)}>CHOOSE FROM ALBUM</Button>
+              <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+            </header>
+           </div>) 
+      } else if(this.state.page===2) {
+        //from cam
+       
+      } else if(this.state.page===3) {
+        //from photo album
+      
+      } else if (this.state.page===4) {
 
-      } else if  (this.state.page === 2) {
+      } else if  (this.state.page === 5) {
         return (
           <div className="App">
               <header className="App-header">
@@ -150,8 +226,8 @@ class App extends React.Component {
               </header>
           </div>
         )
-
-      } else if  (this.state.page === 3) {
+        
+      } else if  (this.state.page === 6) {
         return (
           <div className="App">
               <header className="App-header">
@@ -161,8 +237,8 @@ class App extends React.Component {
               </header>
           </div>
         )
-
-      } else if (this.state.page === 4) {
+        
+      } else if (this.state.page === 7) {
         return (
           <div className="App">
               <header className="App-header">
