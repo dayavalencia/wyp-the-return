@@ -211,7 +211,7 @@ class App extends React.Component {
                       onClick={() => navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 50,
                                     destinationType: navigator.camera.DestinationType.FILE_URI 
                                   })}>TAKE A PICTURE</Button>
-              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromAlbum(e)}>CHOOSE FROM ALBUM</Button>
+              <br />
               <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
             </header>
            </div>) 
@@ -219,7 +219,10 @@ class App extends React.Component {
         //from cam
         return (
           <div className="App">
-            <img id="myImage" />
+            <header className="App-header">
+              <img id="myImage" style={{ width: '80vw' }}/>
+              <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
+            </header>
           </div>
         )
       } else if(this.state.page===3) {

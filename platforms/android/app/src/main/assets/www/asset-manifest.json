@@ -1,31 +1,18 @@
 {
   "files": {
-<<<<<<< HEAD
     "main.css": "./static/css/main.2cce8147.chunk.css",
-    "main.js": "./static/js/main.3fd023dd.chunk.js",
-    "main.js.map": "./static/js/main.3fd023dd.chunk.js.map",
+    "main.js": "./static/js/main.c92e5a26.chunk.js",
+    "main.js.map": "./static/js/main.c92e5a26.chunk.js.map",
     "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
     "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
     "static/css/2.328f408e.chunk.css": "./static/css/2.328f408e.chunk.css",
     "static/js/2.973c9a9a.chunk.js": "./static/js/2.973c9a9a.chunk.js",
     "static/js/2.973c9a9a.chunk.js.map": "./static/js/2.973c9a9a.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.3e9c602e93c8d29f9451f96c416e3a2a.js": "./precache-manifest.3e9c602e93c8d29f9451f96c416e3a2a.js",
-=======
-    "main.css": "./static/css/main.ba49ec77.chunk.css",
-    "main.js": "./static/js/main.b54372e7.chunk.js",
-    "main.js.map": "./static/js/main.b54372e7.chunk.js.map",
-    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
-    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
-    "static/css/2.328f408e.chunk.css": "./static/css/2.328f408e.chunk.css",
-    "static/js/2.c6dce6d4.chunk.js": "./static/js/2.c6dce6d4.chunk.js",
-    "static/js/2.c6dce6d4.chunk.js.map": "./static/js/2.c6dce6d4.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.a930d034f9fee57ce05785ec39f80208.js": "./precache-manifest.a930d034f9fee57ce05785ec39f80208.js",
->>>>>>> origin/dev/ria
+    "precache-manifest.ef4d04b2d5ffe450e10a851c281314f7.js": "./precache-manifest.ef4d04b2d5ffe450e10a851c281314f7.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.328f408e.chunk.css.map": "./static/css/2.328f408e.chunk.css.map",
-    "static/css/main.ba49ec77.chunk.css.map": "./static/css/main.ba49ec77.chunk.css.map",
+    "static/css/main.2cce8147.chunk.css.map": "./static/css/main.2cce8147.chunk.css.map",
     "static/media/dog.png": "./static/media/dog.ca358417.png"
   }
 }
