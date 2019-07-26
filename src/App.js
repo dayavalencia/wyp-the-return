@@ -53,9 +53,17 @@ class App extends React.Component {
     this.setState({ page:1 })
   }
 
-  takeDoggoPhotoFromCam() {
-    this.setState({ page:2 })
-    
+  onSuccess = (imageURI) => {
+      this.setState({ page: 2 })
+      let image = document.getElementById('myImage');
+      image.src = imageURI;
+  }
+
+  onFail = (message) => {
+      alert('Failed because: ' + message);
+  }
+
+  takeDoggoPhotoFromCam() {    
     let cam = {
       init:function () {
         document.getElementById('cambtn').addEventListener('click', cam.takePhoto);
@@ -199,14 +207,21 @@ class App extends React.Component {
         return (         
           <div className="App">
             <header className="App-header">
-              <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromCam(e)}>TAKE A PICTURE</Button>
+              <Button shape='round' size='large' 
+                      onClick={() => navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 50,
+                                    destinationType: navigator.camera.DestinationType.FILE_URI 
+                                  })}>TAKE A PICTURE</Button>
               <Button shape='round' size='large' onClick={e => this.takeDoggoPhotoFromAlbum(e)}>CHOOSE FROM ALBUM</Button>
               <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
             </header>
            </div>) 
       } else if(this.state.page===2) {
         //from cam
-       
+        return (
+          <div className="App">
+            <img id="myImage" />
+          </div>
+        )
       } else if(this.state.page===3) {
         //from photo album
       
