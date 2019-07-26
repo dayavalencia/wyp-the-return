@@ -5,6 +5,7 @@ import PrivacyPolicy from './PrivacyPolicy.js';
 import QuizItem from './QuizItem.js';
 import './App.css';
 import 'antd/dist/antd.css';
+import * as ml5 from "ml5";
 
 class App extends React.Component {
   constructor () {
@@ -53,10 +54,30 @@ class App extends React.Component {
     this.setState({ page:1 })
   }
 
+  classifyImg = () => {
+    // Initialize the Image Classifier method with MobileNet
+    const classifier = ml5.imageClassifier('MobileNet', modelLoaded);
+    // When the model is loaded
+    function modelLoaded() {
+      console.log('Model Loaded!');
+    }
+    // Put the image to classify inside a variable
+    const image = document.getElementById('myImage');
+    // Make a prediction with a selected image
+    classifier.classify(image, 5, function(err, results) {
+      // print the result in the console
+      document.getElementById('classifier_result').innerHTML = results[0].label + " " + (Math.floor(results[0].confidence * 10000) / 100) + "%"
+    })
+
+    navigator.camera.cleanup();
+  }
+
   onSuccess = (imageURI) => {
       this.setState({ page: 2 })
+
       let image = document.getElementById('myImage');
       image.src = imageURI;
+      this.classifyImg()
   }
 
   onFail = (message) => {
@@ -221,6 +242,7 @@ class App extends React.Component {
           <div className="App">
             <header className="App-header">
               <img id="myImage" style={{ width: '80vw' }}/>
+              <h2 style={{color: '#fff'}} id="classifier_result">LOADING</h2>
               <Button shape='round' size='large' onClick={e => this.renderMenu(e)}>BACK TO MENU</Button>
             </header>
           </div>
