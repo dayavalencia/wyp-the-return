@@ -1,4 +1,9 @@
-Contents of 'wyp' don't matter masyado, the rendering sa app is handled inside 'src'.
+Who's Your Pupper!
+Take a picture of a pupper that's caught your eye and instantly know its breed.
+Also has a quiz to help identify which dog better suits you!
+Only works for Pug, Husky, Corgi, Chihuahua, and German Shepherd
+
+
 
 ## How to run app on phone or emulator
   npm run build <br>
